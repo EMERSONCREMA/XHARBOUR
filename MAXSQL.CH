@@ -1,0 +1,6 @@
+#define SQL_ITEM_TYPE           "T"
+#define SQL_ITEM_TABLE          "TB"
+#define SQL_ITEM_FUNCTION       "F"
+#define SQL_ITEM_VIEW           "V"
+#define SQL_ITEM_ORDINARY_TABLE "R"
+#define SQL_ITEM_PRIMARY_KEY    "PK"

@@ -1,0 +1,120 @@
+#BCC
+VERSION=BCB.01
+
+!ifndef CC_DIR
+   CC_DIR = $(MAKE_DIR)
+!endif
+
+!ifndef HB_DIR
+   HB_DIR = $(HARBOUR_DIR)
+!endif
+
+OBJ = OBJ\DEBUG
+
+PROJECT = $(MAXLIB_DIR)\MAXLIB.lib $(PR)
+
+OBJFILES = $(OBJ)\GETSYS.OBJ   //
+           $(OBJ)\MAXARQ.OBJ   //
+           $(OBJ)\MAXARRAY.OBJ //
+           $(OBJ)\MAXAUX.OBJ   //
+           $(OBJ)\MAXCALC.OBJ  //
+           $(OBJ)\MAXCLASS.OBJ //
+           $(OBJ)\MAXCONV.OBJ  //
+           $(OBJ)\MAXDATA.OBJ  //
+           $(OBJ)\MAXDB.OBJ    //
+           $(OBJ)\MAXDIG.OBJ   //
+           $(OBJ)\MAXFUNBD.OBJ //
+           $(OBJ)\MAXGET.OBJ   //
+           $(OBJ)\MAXGRAF.OBJ  //
+           $(OBJ)\MAXINI.OBJ   //
+           $(OBJ)\MAXIMP.OBJ   //
+           $(OBJ)\MAXINPUT.OBJ //
+           $(OBJ)\MAXLBAR.OBJ  //
+           $(OBJ)\MAXLIST.OBJ  //
+           $(OBJ)\MAXMEMO.OBJ  //
+           $(OBJ)\MAXMENU.OBJ  //
+           $(OBJ)\MAXNET.OBJ   //
+           $(OBJ)\MAXNETX.OBJ  //
+           $(OBJ)\MAXONL.OBJ   //
+           $(OBJ)\MAXSIST.OBJ  //
+           $(OBJ)\MAXSPOOL.OBJ //
+           $(OBJ)\MAXSQL.OBJ   //
+           $(OBJ)\MAXSTR.OBJ   //
+           $(OBJ)\MAXTELA.OBJ  //
+           $(OBJ)\MAXTOOLS.OBJ //
+           $(OBJ)\MAXVALID.OBJ //
+           $(OBJ)\MAXVID.OBJ   //
+           $(OBJ)\MAXXML.OBJ   $(OB)
+
+PRGFILES = GETSYS.PRG   //
+           MAXARQ.PRG   //
+           MAXARRAY.PRG //
+           MAXAUX.PRG   //
+           MAXCALC.PRG  //
+           MAXCLASS.PRG //
+           MAXCONV.PRG  //
+           MAXDATA.PRG  //
+           MAXDB.PRG    //
+           MAXDIG.PRG   //
+           MAXFUNBD.PRG //
+           MAXGET.PRG   //
+           MAXGRAF.PRG  //
+           MAXINI.PRG   //
+           MAXIMP.PRG   //
+           MAXINPUT.PRG //
+           MAXLBAR.PRG  //
+           MAXLIST.PRG  //
+           MAXMEMO.PRG  //
+           MAXMENU.PRG  //
+           MAXNET.PRG   //
+           MAXNETX.PRG  //
+           MAXONL.PRG   //
+           MAXSIST.PRG  //
+           MAXSPOOL.PRG //
+           MAXSQL.PRG   //
+           MAXSTR.PRG   //
+           MAXTELA.PRG  //
+           MAXTOOLS.PRG //
+           MAXVALID.PRG //
+           MAXVID.PRG   //
+           MAXXML.PRG   $(PS)
+
+RESFILES =
+RESDEPEN = $(RESFILES)
+DEFFILE = 
+HARBOURFLAGS = -b  -m
+INSTALLLIB = YES
+USERDEFINE = 
+USERINCLUDE = 
+EDITOR = notepad
+CFLAG1 =  -OS $(SHELL)  $(CFLAGS) -d -L$(HB_DIR)\lib;$(FWH)\lib -c
+CFLAG2 =  -I$(HB_DIR)\include -I$(CC_DIR)\include -I
+RFLAGS = 
+LFLAGS = /P32 /0
+IFLAGS = 
+LINKER = tlib $(LFLAGS) $(PROJECT)
+ 
+ALLOBJ =  $(OBJFILES) $(OBJCFILES)
+ALLRES = $(RESDEPEN)
+ALLLIB = 
+.autodepend
+ 
+#COMMANDS
+.cpp.obj:
+$(CC_DIR)\BIN\bcc32 $(CFLAG1) $(CFLAG2) -o$* $**
+ 
+.c.obj:
+$(CC_DIR)\BIN\bcc32 -I$(HB_DIR)\include $(CFLAG1) $(CFLAG2) -o$* $**
+ 
+.prg.obj:
+$(HB_DIR)\bin\harbour -n -go -I$(HB_DIR)\include $(HARBOURFLAGS) -I$(FWH)\include -o$* $**
+ 
+.rc.res:
+$(CC_DIR)\BIN\brcc32 $(RFLAGS) $<
+ 
+#BUILD
+ 
+$(PROJECT): $(CFILES) $(OBJFILES)
+    $(CC_DIR)\BIN\$(LINKER) @&&!
+    $(ALLOBJ)
+!
